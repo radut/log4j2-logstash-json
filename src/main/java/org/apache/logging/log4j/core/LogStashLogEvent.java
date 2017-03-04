@@ -8,14 +8,12 @@ import org.apache.logging.log4j.core.impl.ThrowableProxy;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.util.ReadOnlyStringMap;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class LogStashLogEvent implements LogEvent {
 
     static final String LOG_STASH_ISO8601_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
-    static final DateFormat iso8601DateFormat = new SimpleDateFormat(LOG_STASH_ISO8601_TIMESTAMP_FORMAT);
 
     private LogEvent wrappedLogEvent;
 
@@ -28,7 +26,7 @@ public class LogStashLogEvent implements LogEvent {
     }
 
     public String getTimestamp() {
-        return iso8601DateFormat.format(new Date(this.getTimeMillis()));
+        return new SimpleDateFormat(LOG_STASH_ISO8601_TIMESTAMP_FORMAT).format(new Date(this.getTimeMillis()));
     }
 
     public Map<String, String> getContextMap() {
