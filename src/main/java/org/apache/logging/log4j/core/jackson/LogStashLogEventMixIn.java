@@ -39,6 +39,13 @@ abstract class LogStashLogEventMixIn extends LogEventJsonMixIn {
     @JsonIgnore
     public abstract String getLoggerFqcn();
 
+    @JsonIgnore
+    public abstract long getNanoTime();
+
+
+    @JsonIgnore
+    public abstract boolean isEndOfBatch();
+
     @JsonProperty("mdc")
     public abstract ReadOnlyStringMap getContextData();
 
